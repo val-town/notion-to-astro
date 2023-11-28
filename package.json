@@ -1,0 +1,29 @@
+{
+  "type": "module",
+  "name": "notion-to-astro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "emoji-regex": "^10.3.0",
+    "github-slugger": "^2.0.0",
+    "globby": "^14.0.0",
+    "js-yaml": "^4.1.0",
+    "mdast-util-to-string": "^4.0.0",
+    "meow": "^12.1.1",
+    "ora": "^7.0.1",
+    "remark": "^15.0.1",
+    "remark-frontmatter": "^5.0.0",
+    "remark-parse": "^11.0.0",
+    "to-vfile": "^8.0.0",
+    "unified": "^11.0.4",
+    "unist-util-map": "^4.0.0",
+    "unist-util-visit": "^5.0.0",
+    "unist-util-visit-parents": "^6.0.1"
+  }
+}
