@@ -14,6 +14,24 @@ Here's what it does:
 | Exports `<aside></aside>` elements | Wants [`::note` syntax][1]   |
 | Links & images are URL-encoded     | They aren't                  |
 
+## Notion bugs
+
+This fixes a bug in Notion: if you have a link in Notion, and the link
+text is an inline code span, like in markdown:
+
+```markdown
+[`getTest`](https://google.com/)
+```
+
+Notion messes this up and outputs this instead:
+
+```markdown
+`[getTest](https://google.com/)`
+```
+
+So any roughly Commonmark Markdown implementation will render
+the latter as the markdown raw text rather than the intended link.
+
 ## Install
 
 ```sh
