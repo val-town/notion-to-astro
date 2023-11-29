@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@valtown/notion-to-astro",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Convert notion export directories to astro starlight-compatible folders",
   "main": "index.js",
   "scripts": {
