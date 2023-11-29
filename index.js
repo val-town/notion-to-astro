@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * @typedef {import('mdast').Root} Root
  */
