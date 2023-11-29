@@ -13,6 +13,18 @@ Here's what it does:
 | Embeds are self-links              | Embeds are HTML              |
 | Exports `<aside></aside>` elements | Wants [`::note` syntax][1]   |
 
+## Install
+
+```sh
+npx @valtown/notion-to-astro
+```
+
+## Usage
+
+```sh
+npx @valtown/notion-to-astro --help
+```
+
 ## One-pass
 
 This is intended to be run once in order to start a conversion,
