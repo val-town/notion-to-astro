@@ -12,6 +12,7 @@ Here's what it does:
 | Title is the first h1 heading      | Title is in YAML frontmatter |
 | Embeds are self-links              | Embeds are HTML              |
 | Exports `<aside></aside>` elements | Wants [`::note` syntax][1]   |
+| Links & images are URL-encoded     | They aren't                  |
 
 ## Install
 
