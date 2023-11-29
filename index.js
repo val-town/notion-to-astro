@@ -12,6 +12,7 @@ import { globby } from "globby";
 import { visit } from "unist-util-visit";
 import * as Fs from "node:fs/promises";
 import * as Path from "node:path";
+import { toString } from "mdast-util-to-string";
 import meow from "meow";
 import { extractTitle } from "./extract-title.js";
 import { getTargetPath, linkedPath } from "./paths.js";
@@ -120,6 +121,49 @@ function rewriteImageUrls() {
   };
 }
 
+/**
+ * Notion's exports have invalid Markdown syntax. If you
+ * have an inline code bit that is linked, the correct
+ * syntax is
+ *
+ * [`code`](url)
+ *
+ * But notion does
+ *
+ * `[code](url)`
+ *
+ * Bad Notion! This tries to fix this case.
+ */
+function fixInvertedLinkBug() {
+  /**
+   * Transform.
+   *
+   * @param {Root} tree
+   *   Tree.
+   * @returns {undefined}
+   *   Nothing.
+   */
+  return function (tree) {
+    visit(tree, "inlineCode", function (node, index, parent) {
+      const text = toString(node);
+      try {
+        if (text.startsWith("[") && text.endsWith(")")) {
+          let ast = unified().use(remarkParse).parse(text);
+          const link = ast.children[0].children[0];
+          const inline = {
+            type: "inlineCode",
+            value: link.children[0].value,
+          };
+          link.children[0] = inline;
+          parent.children[index] = link;
+        }
+      } catch (e) {
+        console.error("Ran into an error fixing a link");
+      }
+    });
+  };
+}
+
 console.log("Transforming documents…");
 for (let path of files) {
   const targetPath = getTargetPath(path, INPUT_DIR, OUTPUT_DIR, ".mdx");
@@ -143,6 +187,7 @@ for (let path of files) {
     .use(extractTitle)
     .use(rewriteImageUrls)
     .use(rewriteLinks)
+    .use(fixInvertedLinkBug)
     .use(rewriteEmbeds);
 
   ast = await u2.run(ast);
