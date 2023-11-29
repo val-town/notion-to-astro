@@ -32,6 +32,43 @@ Notion messes this up and outputs this instead:
 So any roughly Commonmark Markdown implementation will render
 the latter as the markdown raw text rather than the intended link.
 
+## YouTube embeds
+
+This is kind of opinionated about YouTube embeds: it compiles them
+to [lite-youtube-embed](https://github.com/paulirish/lite-youtube-embed/) elements.
+So an embed will end up looking like:
+
+```html
+<lite-youtube videoid="ogfYd705cRs"></lite-youtube>
+```
+
+So, this assumes that you're using lite-youtube-embed. Which you should because it's great.
+In Astro Starlight, we configure lite-youtube-embed like this:
+
+```ts
+starlight({
+  // …
+  head: [
+    {
+      tag: "script",
+      attrs: {
+        src: "https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.0/src/lite-yt-embed.min.js",
+        defer: true,
+      },
+    },
+    {
+      tag: "link",
+      attrs: {
+        href: "https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.0/src/lite-yt-embed.min.css",
+        rel: "stylesheet",
+      },
+    },
+  ],
+});
+```
+
+If you need this to have customizable behavior instead, happy to accept a PR.
+
 ## Install
 
 ```sh
