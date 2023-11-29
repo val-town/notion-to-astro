@@ -1,11 +1,14 @@
 {
   "type": "module",
-  "name": "notion-to-astro",
+  "name": "@valtown/notion-to-astro",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "notion-to-astro": "./index.js"
   },
   "author": "",
   "license": "ISC",
@@ -24,5 +27,8 @@
     "unified": "^11.0.4",
     "unist-util-map": "^4.0.0",
     "unist-util-visit": "^5.0.0"
+  },
+  "engines": {
+    "node": ">= 18"
   }
 }
