@@ -2,7 +2,7 @@
   "type": "module",
   "name": "@valtown/notion-to-astro",
   "version": "1.0.0",
-  "description": "",
+  "description": "Convert notion export directories to astro starlight-compatible folders",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
   "bin": {
     "notion-to-astro": "./index.js"
   },
-  "author": "",
+  "author": "Val Town",
   "license": "ISC",
   "dependencies": {
     "emoji-regex": "^10.3.0",
