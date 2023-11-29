@@ -4,6 +4,7 @@
 import remarkFrontmatter from "remark-frontmatter";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
+import remarkMdx from "remark-mdx";
 import { unified } from "unified";
 import { globby } from "globby";
 import { visit } from "unist-util-visit";
@@ -13,6 +14,7 @@ import meow from "meow";
 import { extractTitle } from "./extract-title.js";
 import { getTargetPath, linkedPath } from "./paths.js";
 import { convertAsides } from "./convert-asides.js";
+import { rewriteEmbeds } from "./rewrite-embeds.js";
 
 const cli = meow(
   `
@@ -123,14 +125,26 @@ for (let path of files) {
 
   let str = convertAsides(await Fs.readFile(path, "utf8"));
 
-  const file = await unified()
-    .use(remarkParse)
+  console.log(`Transforming ${Path.basename(path)}`);
+
+  /**
+   * We want to parse the input _without_ mdx
+   * syntax because the Notion export is just
+   * markdown.
+   */
+  let ast = unified().use(remarkParse).parse(str);
+
+  const u2 = unified()
+    .use(remarkMdx)
     .use(remarkStringify)
     .use(remarkFrontmatter, ["yaml", "toml"])
     .use(extractTitle)
     .use(rewriteImageUrls)
     .use(rewriteLinks)
-    .process(str);
+    .use(rewriteEmbeds);
+
+  ast = await u2.run(ast);
+  const file = u2.stringify(ast);
 
   await Fs.writeFile(targetPath, String(file));
 }

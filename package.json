@@ -16,14 +16,13 @@
     "js-yaml": "^4.1.0",
     "mdast-util-to-string": "^4.0.0",
     "meow": "^12.1.1",
-    "ora": "^7.0.1",
     "remark": "^15.0.1",
     "remark-frontmatter": "^5.0.0",
+    "remark-mdx": "^3.0.0",
     "remark-parse": "^11.0.0",
     "to-vfile": "^8.0.0",
     "unified": "^11.0.4",
     "unist-util-map": "^4.0.0",
-    "unist-util-visit": "^5.0.0",
-    "unist-util-visit-parents": "^6.0.1"
+    "unist-util-visit": "^5.0.0"
   }
 }
