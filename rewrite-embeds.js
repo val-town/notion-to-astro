@@ -47,6 +47,9 @@ export function rewriteEmbeds() {
         parent.children.length === 1
       ) {
         if (node.url.includes("val.town")) {
+          if (node.url.includes("val.town/v/")) {
+            node.url = node.url.replace("val.town/v/", "val.town/embed/");
+          }
           parent.children[index] = notContent({
             type: "mdxJsxFlowElement",
             name: "iframe",

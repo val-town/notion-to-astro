@@ -8,7 +8,5 @@
  * @param {string} str
  */
 export function convertAsides(str) {
-  return str
-    .replace(/<aside>/g, ":::note")
-    .replace(/<\/aside>/g, "OUTPUT_DIR:::");
+  return str.replace(/<aside>/g, ":::note").replace(/<\/aside>/g, ":::");
 }
