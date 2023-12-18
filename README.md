@@ -88,4 +88,8 @@ and then you'd do some manual tweaking. It isn't a solution to
 maintain content in Notion while publishing with Starlight:
 that would require something a lot more complicated.
 
+## See also
+
+- [notion-to-md](https://github.com/souvikinator/notion-to-md) - this takes a different path of exporting Markdown from the Notion API, rather than using Notion's default Markdown exports.
+
 [1]: https://starlight.astro.build/guides/authoring-content/#asides
